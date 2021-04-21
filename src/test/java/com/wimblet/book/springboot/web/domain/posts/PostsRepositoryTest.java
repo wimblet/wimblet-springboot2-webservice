@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -64,7 +65,7 @@ public class PostsRepositoryTest {
 
         System.out.println("@@@ created=" + posts.getCreatedDate() + ", modifiedDate=" + posts.getModifiedDate());
 
-//        assertThat(posts.getCreatedDate()).isA(title);
-//        assertThat(posts.getModifiedDate()).isEqualTo(content);
+        assertTrue(posts.getCreatedDate().isAfter(now));
+        assertTrue(posts.getModifiedDate().isAfter(now));
     }
 }
