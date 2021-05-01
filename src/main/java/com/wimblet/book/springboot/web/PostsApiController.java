@@ -3,6 +3,7 @@ package com.wimblet.book.springboot.web;
 import com.wimblet.book.springboot.service.posts.PostsService;
 import com.wimblet.book.springboot.web.dto.PostsResponseDto;
 import com.wimblet.book.springboot.web.dto.PostsSaveRequestDto;
+import com.wimblet.book.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,8 +20,14 @@ public class PostsApiController {
     }
 
     @PutMapping("/{id}")
-    public Long update(@PathVariable Long id, @RequestBody PostsSaveRequestDto requestDto) {
+    public Long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto) {
         return postsService.update(id, requestDto);
+    }
+
+    @DeleteMapping("/api/v1/posts/{id}")
+    public Long delete(@PathVariable Long id) {
+        postsService.delete(id);
+        return id;
     }
 
     @GetMapping("/{id}")
